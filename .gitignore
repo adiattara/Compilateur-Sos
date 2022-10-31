@@ -7,6 +7,6 @@ lex.yy.c
 main
 main.o
 lex.yy.o
-sos.txt
+sos.txtmake
 a.out
 .idea/*
