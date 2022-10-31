@@ -1,0 +1,12 @@
+sos.tab.o
+sos.tab.c
+sos.tab.h
+sos.output
+lex.yy
+lex.yy.c
+main
+main.o
+lex.yy.o
+sos.txt
+a.out
+.idea/*
