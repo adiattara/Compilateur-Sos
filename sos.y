@@ -9,10 +9,10 @@ extern void yyerror (const char * msg);
 %token tiret_o tiret_a tiret_n tiret_z
 %token ne eq gt ge lt le
 %token '+' '-' '*' '/' '%' diff '='
-%token IF THEN FOR DO DONE in WHILE UNTIL CASE ESAC ECHO READ RETURN EXIT LOCAL ELIF
+%token IF THEN FOR DO DONE in WHILE UNTIL CASE ESAC Echo READ RETURN EXIT LOCAL ELIF
 ELSE FI DECLARE TEST expr
 %token '[' ']' '(' ')'  '{' '}'
-%token id
+%token id 
 %token entier mot chaine
 
 
@@ -36,7 +36,7 @@ instruction : 		id '=' concatenation
 			| WHILE test_bloc DO liste_instructions DONE
 			| UNTIL test_bloc DO liste_instructions DONE
 			| CASE operande in liste_cas ESAC
-			| ECHO liste_operandes
+			| Echo liste_operandes
 			| READ   id | READ id '[' operande_entier ']'
 			| declaration_de_fonction
 			| appel_de_fonction

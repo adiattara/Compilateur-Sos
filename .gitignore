@@ -10,3 +10,4 @@ lex.yy.o
 sos.txtmake
 a.out
 .idea/*
+.vscode
