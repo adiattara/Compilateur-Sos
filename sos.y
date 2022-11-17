@@ -4,6 +4,7 @@ extern int yylex ();
 extern void yyerror (const char * msg);
 %}
 
+
 %token ';' '\"' '\'' '?'
 %token  '|' '$' '!'
 %token tiret_o tiret_a tiret_n tiret_z
@@ -35,7 +36,7 @@ instruction : 		id '=' concatenation
 			| FOR id in liste_operandes DO liste_instructions DONE
 			| WHILE test_bloc DO liste_instructions DONE
 			| UNTIL test_bloc DO liste_instructions DONE
-			| CASE operande in liste_cas ESAC
+			| CASE id in liste_cas ESAC
 			| Echo liste_operandes
 			| READ   id | READ id '[' operande_entier ']'
 			| declaration_de_fonction
@@ -85,7 +86,7 @@ test_instruction   : 	concatenation '=' concatenation
 			| operande operateur2 operande
 			;
 operande           :    '$' '{' id '}' | '$' '{' id '[' operande_entier ']' '}'
-			| mot | '$' entier | '$' '*' | '$' '?'
+			| '$' mot | '$' entier | '$' '*' | '$' '?'
 			| '\"' chaine '\"'| '\'' chaine '\''
 			| '$' '('  expr somme_entiere ')'
 			| '$' '(' appel_de_fonction  ')'
