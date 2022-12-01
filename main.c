@@ -1,24 +1,21 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
+extern char* newtemp();
 extern int yylex ();
 extern int yyparse();
-int nextemp=0;
 
-char* newtemp()
-{
-	
-    char *t="T";
-	char a[20];
-	sprintf(a,"%d",nextemp);
-	strcat(t,a);
-	nextemp++;
-	return t;
-}
+
 
 int main()
 {
-   // printf("a==%s",newtemp());
+    printf("%s\n",newtemp());
+    printf("%s\n",newtemp());
+    printf("%s\n",newtemp());
+    printf("%s\n",newtemp());
+    printf("%s\n",newtemp());
+    printf("%s\n",newtemp());
     int r=yyparse();
     printf("->%d\n",r);
 

@@ -8,19 +8,19 @@ extern void yyerror (const char * msg);
 
 struct quad * globalcode=NULL;
 size_t nextquad=0;
-/*int nextemp=0;
+int nextemp=0;
 
 char* newtemp()
 {
-	
-    char *t="T";
-	char a[20];
-	sprintf(a,"%d",nextemp);
-	strcat(t,a);
-	printf("%s :",a);
+	char* t=malloc(sizeof(char)*2); 
+    strcpy(t,"t");
+    char text[20];
+	sprintf(text, "%d", nextemp);   
+	strcat(t,text);
+
 	nextemp++;
 	return t;
-}*/
+}
 void gencode(struct quad q)
 {
     if(nextquad%16==0)
