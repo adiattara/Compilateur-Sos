@@ -5,7 +5,7 @@ extern void yyerror (const char * msg);
 %}
 
 
-%token ';' '\"' '\'' '?'
+%token ';'  '?' double_virgule
 %token  '|' '$' '!'
 %token tiret_o tiret_a tiret_n tiret_z
 %token ne eq gt ge lt le
@@ -14,7 +14,7 @@ extern void yyerror (const char * msg);
 ELSE FI DECLARE TEST expr
 %token '[' ']' '(' ')'  '{' '}'
 %token id 
-%token entier mot chaine
+%token entier chaine
 
 
 
@@ -36,7 +36,7 @@ instruction : 		id '=' concatenation
 			| FOR id in liste_operandes DO liste_instructions DONE
 			| WHILE test_bloc DO liste_instructions DONE
 			| UNTIL test_bloc DO liste_instructions DONE
-			| CASE id in liste_cas ESAC
+			| CASE operande in liste_cas ESAC
 			| Echo liste_operandes
 			| READ   id | READ id '[' operande_entier ']'
 			| declaration_de_fonction
@@ -48,14 +48,13 @@ else_part     :		ELIF test_bloc THEN liste_instructions else_part
 			|ELSE liste_instructions
 			|
 			;
-liste_cas      :	liste_cas filtre ')' liste_instructions ';' ';'
-			| filtre ')' liste_instructions ';' ';'
+liste_cas      :	liste_cas filtre ')' liste_instructions double_virgule
+			| filtre ')' liste_instructions double_virgule
 			;
 
-filtre          :	mot | '\"' chaine '\"'| '\'' chaine '\''
-			| filtre '|' mot
-			| filtre '|'  '\"' chaine '\"'
-			| filtre '|'  '\'' chaine '\''
+filtre          :	id |chaine  // mot -> id
+			| filtre '|' id // mot -> id
+			| filtre '|'  chaine
 			|'*'
 			;
 liste_operandes   :	liste_operandes operande
@@ -86,8 +85,8 @@ test_instruction   : 	concatenation '=' concatenation
 			| operande operateur2 operande
 			;
 operande           :    '$' '{' id '}' | '$' '{' id '[' operande_entier ']' '}'
-			| '$' mot | '$' entier | '$' '*' | '$' '?'
-			| '\"' chaine '\"'| '\'' chaine '\''
+			|id | entier | '$' entier | '$' '*' | '$' '?' // mot -> entier
+			|  chaine
 			| '$' '('  expr somme_entiere ')'
 			| '$' '(' appel_de_fonction  ')'
 			;

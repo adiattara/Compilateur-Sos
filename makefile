@@ -1,6 +1,7 @@
 
 main :sos.tab.o lex.yy.o main.o
 
+
 sos.tab.c: sos.y
 	bison -d $<
 lex.yy.c : sos.lex sos.tab.c
