@@ -1,5 +1,5 @@
 
-main :sos.tab.o lex.yy.o main.o
+main :sos.tab.o lex.yy.o main.o quadop.o
 
 
 sos.tab.c: sos.y

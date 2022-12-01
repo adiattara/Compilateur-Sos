@@ -1,7 +1,49 @@
 %{
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include "quadop.h"
 extern int yylex ();
 extern void yyerror (const char * msg);
+
+struct quad * globalcode=NULL;
+size_t nextquad=0;
+/*int nextemp=0;
+
+char* newtemp()
+{
+	
+    char *t="T";
+	char a[20];
+	sprintf(a,"%d",nextemp);
+	strcat(t,a);
+	printf("%s :",a);
+	nextemp++;
+	return t;
+}*/
+void gencode(struct quad q)
+{
+    if(nextquad%16==0)
+    {
+        size_t n=nextquad+16;
+        globalcode=realloc(globalcode,n);
+
+    }
+
+    globalcode[nextquad++]=q;
+}
+
+
+struct addrcell* complete(struct addrcell*liste, size_t adresse)
+{
+    while(liste!=NULL)
+    {
+        globalcode[liste->addr].q3=quadop_addr(adresse);
+		liste=liste->next;
+    }
+}
+
+
 %}
 
 

@@ -1,15 +1,24 @@
 #include <stdio.h>
+#include <string.h>
 
 extern int yylex ();
 extern int yyparse();
+int nextemp=0;
 
-//extern int yydebug;
+char* newtemp()
+{
+	
+    char *t="T";
+	char a[20];
+	sprintf(a,"%d",nextemp);
+	strcat(t,a);
+	nextemp++;
+	return t;
+}
+
 int main()
 {
-   // // yydebug=1;
-   //(\"([^{NOT_MOT}\"\\]|\\.)*\") {strcpy(yy_name, yytext);printf("mot %s\n",yytext); return mot;}
-   //(\"([^{NOT_MOT}\"\\]|\\.)*\") {strcpy(yy_name, yytext);printf("mot %s\n",yytext); return mot;}
-
+   // printf("a==%s",newtemp());
     int r=yyparse();
     printf("->%d\n",r);
 
