@@ -1,4 +1,5 @@
-declare valeurs[4];
+# Exemple 1 de programme en SoS
+declare valeurs[4] ;
 lecture_valeurs() # Saisie des valeurs entières
 {
 local i=0 ; local nombre = $1 ;
@@ -7,7 +8,7 @@ while test ${i} -lt ${nombre} do
 echo "Entrez la valeur " $( expr ${i} + 1 ) " : \n" ;
 read valeurs[${i}] ;
 if test ! ${valeurs[${i}]} -gt 0 then
-echo "Les valeurs doivent etre strictement positives !\n"
+echo "Les valeurs doivent etre strictement positives !\n" ;
 return 1
 fi ;
 i = $( expr ${i} + 1 )
